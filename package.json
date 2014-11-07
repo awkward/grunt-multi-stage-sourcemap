@@ -1,0 +1,45 @@
+{
+  "name": "grunt-multi-stage-sourcemap",
+  "description": "Remap multi-level sourcemaps",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jchn/grunt-multi-stage-sourcemap",
+  "author": {
+    "name": "John van de Water",
+    "email": "john.vd.water85@gmail.com",
+    "url": "http://johnvandewater.nl"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jchn/grunt-multi-stage-sourcemap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jchn/grunt-multi-stage-sourcemap/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jchn/grunt-multi-stage-sourcemap/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ],
+  "dependencies": {
+    "multi-stage-sourcemap": "^0.2.1"
+  }
+}
