@@ -1,4 +1,4 @@
-# grunt-multi-stage-sourcemap
+# grunt-multi-stage-sourcemap [![Build Status](https://travis-ci.org/awkward/grunt-multi-stage-sourcemap.svg?branch=master)](https://travis-ci.org/awkward/grunt-multi-stage-sourcemap)
 
 > Remap multi-level sourcemaps using the [multi-stage-sourcemap](https://github.com/azu/multi-stage-sourcemap) library.
 
