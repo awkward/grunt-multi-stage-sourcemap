@@ -1,8 +1,6 @@
 # grunt-multi-stage-sourcemap
 
-Work in progress!
-
-> Remap multi-level sourcemaps
+> Remap multi-level sourcemaps using the [multi-stage-sourcemap](https://github.com/azu/multi-stage-sourcemap) library.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -39,47 +37,43 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.map
+Type: `function`
 
-A string value that is used to do something with whatever.
+Default value:
+```
+function naiveMapping(pathMapFrom, pathMapTo) {
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+  function getFilename(path) {
+    return path.split("/").pop();
+  }
 
-A string value that is used to do something else with whatever else.
+  if (getFilename(pathMapFrom) === getFilename(pathMapTo)) {
+    return true;
+  }
+}
+```
+
+A function which decides which maps should be offset to each other. The function recieves the paths to both files and should return `true` if they match up otherwise it should return `false`.
+
+By default the function will return `true` if both files have the same name.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, the default options are used to retrieve the `default_options.js.map` source map from directory `A` and remap it using `default_options.js.map` from directory `B`.
 
 ```js
 grunt.initConfig({
   multi_stage_sourcemap: {
+    filesFrom: 'test/fixtures/A/default_options.js.map',
     options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  multi_stage_sourcemap: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+    files: [{
+      expand: true,
+      cwd: 'test/fixtures/B/',
+      src: ['default_options.js.map'],
+      dest: 'tmp'
+    }],
   },
 });
 ```
